@@ -1,0 +1,12 @@
+
+Execute `docker run` to start a postgres database in a container.
+
+```
+docker run --name single-query-postgres -e POSTGRES_PASSWORD=not-a-secret -d -p 5432:5432 postgres:15.1
+```
+
+Check the database is up and running with psql.
+
+```
+psql postgres://postgres:not-a-secret@localhost/postgres
+```
