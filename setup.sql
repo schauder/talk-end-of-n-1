@@ -70,5 +70,3 @@ insert into minion (id, name) values (3, 'Stuart');
 
 insert into hobby (minion_id, id, name) values (3, 131, 'relax');
 -- no toys
-
-select * from accessoire;

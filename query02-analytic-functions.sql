@@ -51,9 +51,8 @@ select *,
 	sum(passengers) over (partition by flight_number order by seq) sum_passengers
 from flight_leg;
 
--- number the legs flying from each airport
+-- number the legs flying from each airport by number of passangers
 
 select *,
-    row_number() over (partition by start order by flight_number)
-from flight_leg
-order by flight_number, seq;
+    row_number() over (partition by start order by passengers)
+from flight_leg;
