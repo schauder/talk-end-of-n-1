@@ -4,6 +4,9 @@ This talk teaches you how Spring Data JDBC will in  the future load aggregates i
 While the motivation for the talk is based in Spring Data JDBC it is more of an advanced SQL tutorial.
 
 You can find the [current version of the slides on google drive](https://docs.google.com/presentation/d/1lgIUuKQsYReuPNXiAnJUY-PSAQhdubxe-JDDaBBJmUg/edit?usp=sharing).
+A unmodifiable version can be found in this repository as pdf.
+Of course, unmodifiable is in the sense of Git: you may pull a certain version from the version history.
+
 
 The queries used in the demo part are in this repository named `query0n_*.sql`.
 Take a wild guess in which order to execute them.
