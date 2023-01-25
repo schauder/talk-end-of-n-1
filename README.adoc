@@ -3,7 +3,7 @@
 This talk teaches you how Spring Data JDBC will in  the future load aggregates in a single query.
 While the motivation for the talk is based in Spring Data JDBC it is more of an advanced SQL tutorial.
 
-You can find the [current version of the slides on google drive](https://docs.google.com/presentation/d/1lgIUuKQsYReuPNXiAnJUY-PSAQhdubxe-JDDaBBJmUg/edit?usp=sharing).
+You can find the https://docs.google.com/presentation/d/1lgIUuKQsYReuPNXiAnJUY-PSAQhdubxe-JDDaBBJmUg/edit?usp=sharing[current version of the slides on google drive].
 A unmodifiable version can be found in this repository as pdf.
 Of course, unmodifiable is in the sense of Git: you may pull a certain version from the version history.
 
@@ -31,4 +31,3 @@ psql postgres://postgres:not-a-secret@localhost/postgres
 
 Use your preferred SQL tool to run the `setup.sql` script in order to create the required tables.
 
-===
