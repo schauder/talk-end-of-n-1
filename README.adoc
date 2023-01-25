@@ -1,3 +1,18 @@
+== How to load Aggregates with a Single query
+
+This talk teaches you how Spring Data JDBC will in  the future load aggregates in a single query.
+While the motivation for the talk is based in Spring Data JDBC it is more of an advanced SQL tutorial.
+
+You can find the [current version of the slides on google drive](https://docs.google.com/presentation/d/1lgIUuKQsYReuPNXiAnJUY-PSAQhdubxe-JDDaBBJmUg/edit?usp=sharing).
+
+The queries used in the demo part are in this repository named `query0n_*.sql`.
+Take a wild guess in which order to execute them.
+
+=== Setup
+
+You'll need a database to execute the examples.
+They were created using a Postgres database on docker:
+
 
 Execute `docker run` to start a postgres database in a container.
 
@@ -10,3 +25,7 @@ Check the database is up and running with psql.
 ```
 psql postgres://postgres:not-a-secret@localhost/postgres
 ```
+
+Use your preferred SQL tool to run the `setup.sql` script in order to create the required tables.
+
+===
