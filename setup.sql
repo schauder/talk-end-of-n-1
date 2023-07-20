@@ -62,6 +62,8 @@ insert into property(toy_id, id, name) values (221, 32212, 'limp');
 insert into property(toy_id, id, name) values (222, 32221, 'blinking');
 
 insert into accessoire(toy_id, id, name) values (221, 42211, 'rain coat');
+insert into accessoire(toy_id, id, name) values (221, 42212, 'red hat');
+insert into accessoire(toy_id, id, name) values (221, 42213, 'rubber boots');
 insert into accessoire(toy_id, id, name) values (222, 42221, 'head strap');
 insert into accessoire(toy_id, id, name) values (222, 42222, 'replacement bulb');
 
