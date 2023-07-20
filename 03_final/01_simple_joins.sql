@@ -105,44 +105,44 @@ order by root_id, rn;
 -- We have the right number of rows, but we now want to replace duplicated data with null ...
 -- Therefore we pull the case expressions out
 select
-    m_id                                                                  root_id,
-    greatest(m_rn, t_rn, h_rn)                                            rn,
-    case when greatest(m_rn, t_rn, h_rn) = m_rn then m_id else null end   m_id,
-    case when greatest(m_rn, t_rn, h_rn) = m_rn then m_name else null end m_name,
-    case when greatest(m_rn, t_rn, h_rn) = t_rn then t_id else null end   t_id,
-    case when greatest(m_rn, t_rn, h_rn) = t_rn then t_name else null end t_name,
-    case when greatest(m_rn, t_rn, h_rn) = h_rn then h_id else null end   h_id,
-    case when greatest(m_rn, t_rn, h_rn) = h_rn then h_name else null end h_name,
-    *
+    t_id                                                                  root_id,
+    greatest(t_rn, a_rn, p_rn)                                            rn,
+    case when greatest(t_rn, a_rn, p_rn) = t_rn then t_id else null end   t_id,
+    case when greatest(t_rn, a_rn, p_rn) = t_rn then t_name else null end t_name,
+    case when greatest(t_rn, a_rn, p_rn) = a_rn then a_id else null end   a_id,
+    case when greatest(t_rn, a_rn, p_rn) = a_rn then a_name else null end a_name,
+    case when greatest(t_rn, a_rn, p_rn) = p_rn then p_id else null end   p_id,
+    case when greatest(t_rn, a_rn, p_rn) = p_rn then p_name else null end p_name
 from (
          select *
          from (
                   select
-                      1    m_rn,
-                      1    m_cnt,
-                      id   m_id,
-                      name m_name
-                  from minion) m
+                      1    t_rn,
+                      1    t_cnt,
+                      id   t_id,
+                      name t_name
+                  from toy) t
               left outer join (
              select
-                 row_number() over (partition by minion_id) t_rn,
-                 count(*) over  (partition by minion_id) t_cnt,
-                 id                                         t_id,
-                 name                                       t_name,
-                 minion_id                                  t_minion_id
-             from toy) t
-              on m_id = t_minion_id) vt
+                 row_number() over (partition by toy_id) a_rn,
+                 count(*) over (partition by toy_id)     a_cnt,
+                 id                                      a_id,
+                 name                                    a_name,
+                 toy_id                                  a_toy_id
+             from accessoire) a
+              on t_id = a_toy_id) va
      left outer join (
     select
-        row_number() over (partition by minion_id) h_rn,
-        count(*) over  (partition by minion_id) h_cnt,
-        id                                         h_id,
-        name                                       h_name,
-        minion_id                                  h_minion_id
-    from hobby) h
-     on m_id = h_minion_id
-where (t_rn = m_rn or t_rn is null or t_rn > m_cnt)
-and (h_rn = greatest(m_rn, t_rn)   -- if they match we want them
-   or greatest(m_cnt, t_cnt) < h_rn -- also if we have more hobbies then toys
-   or h_rn is null)
+        row_number() over (partition by toy_id) p_rn,
+        count(*) over (partition by toy_id)     p_cnt,
+        id                                      p_id,
+        name                                    p_name,
+        toy_id                                  p_toy_id
+    from property) p
+     on t_id = p_toy_id
+where (a_rn = t_rn or a_rn is null or a_rn > t_cnt)
+  and (p_rn = greatest(t_rn, a_rn) -- if they match we want them
+    or (p_rn < greatest(t_rn, a_rn) and p_rn = 1)
+    or greatest(t_cnt, a_cnt) < p_rn -- also if we have more properties then accessoires
+    or p_rn is null)
 order by root_id, rn;
